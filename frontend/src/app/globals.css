@@ -1,0 +1,201 @@
+@import "tailwindcss";
+
+:root {
+  --font-outfit: "Outfit", "Helvetica Neue", system-ui, sans-serif;
+}
+
+* {
+  font-family: var(--font-outfit);
+}
+
+body {
+  background: #F5F0E8;
+  color: #1A0D00;
+}
+
+/* ─── Animation keyframes ──────────────────────────────────────────────────── */
+
+@keyframes rb-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes rb-fade-up {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes rb-slide-left {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes rb-dot-pulse {
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(0.85);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+/* ─── Hero load animations (applied inline via className) ──────────────────── */
+
+.rb-anim-fade-in {
+  animation: rb-fade-in 0.55s ease both;
+}
+
+.rb-anim-fade-up {
+  animation: rb-fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.rb-anim-slide-left {
+  animation: rb-slide-left 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Hero delay utilities */
+.rb-delay-1 {
+  animation-delay: 80ms;
+}
+
+.rb-delay-2 {
+  animation-delay: 180ms;
+}
+
+.rb-delay-3 {
+  animation-delay: 300ms;
+}
+
+.rb-delay-4 {
+  animation-delay: 420ms;
+}
+
+.rb-delay-5 {
+  animation-delay: 560ms;
+}
+
+/* ─── Scroll-reveal: base state (hidden) ────────────────────────────────────── */
+
+[data-reveal] {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  will-change: opacity;
+}
+
+/* Revealed state */
+[data-reveal][data-visible] {
+  opacity: 1;
+}
+
+/* Stagger delays for scroll-reveal */
+[data-reveal][data-delay="1"] {
+  transition-delay: 80ms;
+}
+
+[data-reveal][data-delay="2"] {
+  transition-delay: 160ms;
+}
+
+[data-reveal][data-delay="3"] {
+  transition-delay: 240ms;
+}
+
+[data-reveal][data-delay="4"] {
+  transition-delay: 320ms;
+}
+
+[data-reveal][data-delay="5"] {
+  transition-delay: 400ms;
+}
+
+[data-reveal][data-delay="6"] {
+  transition-delay: 480ms;
+}
+
+/* ─── Injective anime explosion aura ───────────────────────────────────────── */
+
+@keyframes questa-injective-aura {
+
+  0%,
+  100% {
+    color: #c809f3;
+    letter-spacing: 0.04em;
+    text-shadow:
+      0 0 4px rgba(245, 19, 11, 0.9),
+      0 0 12px rgba(19, 11, 235, 0.6),
+      0 0 24px rgba(200, 25, 231, 0.4),
+      0 0 48px rgba(185, 117, 43, 0.2);
+  }
+
+  35% {
+    color: #FCD34D;
+    letter-spacing: 0.065em;
+    text-shadow:
+      0 0 6px rgba(252, 211, 77, 1),
+      0 0 18px rgba(252, 211, 77, 0.85),
+      0 0 40px rgba(245, 158, 11, 0.7),
+      0 0 80px rgba(185, 117, 43, 0.45),
+      0 0 120px rgba(239, 68, 68, 0.15);
+  }
+
+  65% {
+    color: #FFFBEB;
+    letter-spacing: 0.09em;
+    text-shadow:
+      0 0 8px rgba(255, 255, 255, 0.95),
+      0 0 24px rgba(253, 230, 138, 0.9),
+      0 0 50px rgba(245, 158, 11, 0.75),
+      0 0 90px rgba(185, 117, 43, 0.55),
+      0 0 140px rgba(239, 68, 68, 0.2),
+      0 0 200px rgba(185, 117, 43, 0.1);
+  }
+}
+
+.questa-injective-aura {
+  display: inline-block;
+  animation: questa-injective-aura 2.4s ease-in-out infinite;
+  will-change: text-shadow, color, letter-spacing;
+  font-weight: 500;
+}
+
+/* ─── Respect reduced-motion ────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .rb-anim-fade-in,
+  .rb-anim-fade-up,
+  .rb-anim-slide-left {
+    animation: none;
+    opacity: 1;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transition: none;
+  }
+
+  .questa-injective-aura {
+    animation: none;
+    color: #F59E0B;
+  }
+}
