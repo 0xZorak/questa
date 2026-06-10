@@ -14,7 +14,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://questa-ten.vercel.app"),
+  metadataBase: new URL("https://questa-inj.vercel.app"),
   title: "Questa — Injective Testnet",
   description: "AI-powered quest campaigns with trustless INJ rewards on Injective",
   applicationName: "Questa",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     siteName: "Questa",
     title: "Questa — AI-powered quests on Injective",
     description: "AI-powered quest campaigns with trustless INJ rewards on Injective.",
-    url: "https://questa-ten.vercel.app",
+    url: "https://questa-inj.vercel.app",
     images: [{ url: "/questa-logo.png", width: 1254, height: 1254, alt: "Questa" }],
   },
   twitter: {
