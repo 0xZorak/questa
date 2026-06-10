@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Copy, Check, Wallet, Loader2, LogOut } from "lucide-react";
 import { useWalletStore } from "@/store/wallet";
@@ -160,7 +160,7 @@ function TwitterConnect({
 }
 
 // ── Page ──────────────────────────────────────────────────────────────────────
-export default function ProfilePage() {
+function ProfileContent() {
   const { dark }  = useTheme();
   const router    = useRouter();
   const params    = useSearchParams();
@@ -427,5 +427,19 @@ export default function ProfilePage() {
         )}
       </div>
     </div>
+  );
+}
+
+// useSearchParams (?twitter_connected / ?twitter_error) requires a Suspense
+// boundary for the production build to prerender this route.
+export default function ProfilePage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center" style={{ background: "#F5F0E8" }}>
+        <div className="w-6 h-6 border-2 border-amber-500 border-t-transparent rounded-full animate-spin" />
+      </div>
+    }>
+      <ProfileContent />
+    </Suspense>
   );
 }
