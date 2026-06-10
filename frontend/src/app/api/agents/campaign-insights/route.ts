@@ -34,10 +34,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
 
-const client = new OpenAI({
-  apiKey: process.env.DEEPSEEK_API_KEY!,
-  baseURL: "https://api.deepseek.com",
-});
+let _client: OpenAI | null = null;
+function getClient(): OpenAI {
+  if (!_client) _client = new OpenAI({ apiKey: process.env.DEEPSEEK_API_KEY!, baseURL: "https://api.deepseek.com" });
+  return _client;
+}
 
 const SYSTEM = `You are a Web3 campaign performance analyst specializing in on-chain reward campaigns on the Injective blockchain. You analyze campaign metrics and provide actionable creator recommendations.
 
@@ -73,7 +74,7 @@ export async function POST(req: NextRequest) {
       ? Math.round((submissionsWithUrl / body.participant_count) * 100)
       : 0;
 
-    const res = await client.chat.completions.create({
+    const res = await getClient().chat.completions.create({
       model: "deepseek-chat",
       messages: [
         { role: "system", content: SYSTEM },

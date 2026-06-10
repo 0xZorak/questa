@@ -26,10 +26,11 @@ import { isAppError } from "@/lib/errors";
 
 const log = createRouteLogger("/api/agent/concierge");
 
-const openai = new OpenAI({
-  apiKey:   process.env.DEEPSEEK_API_KEY!,
-  baseURL:  "https://api.deepseek.com",
-});
+let _openai: OpenAI | null = null;
+function getOpenAI(): OpenAI {
+  if (!_openai) _openai = new OpenAI({ apiKey: process.env.DEEPSEEK_API_KEY!, baseURL: "https://api.deepseek.com" });
+  return _openai;
+}
 
 function getSupabase() {
   return createClient(
@@ -270,7 +271,7 @@ ${wallet ? `The user's wallet is: ${wallet}` : "The user has not connected a wal
     let reply = "";
 
     for (let i = 0; i < 5; i++) {
-      const res = await openai.chat.completions.create({
+      const res = await getOpenAI().chat.completions.create({
         model:       "deepseek-chat",
         messages:    loopMessages,
         tools,

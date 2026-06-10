@@ -24,10 +24,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
 
-const client = new OpenAI({
-  apiKey: process.env.DEEPSEEK_API_KEY!,
-  baseURL: "https://api.deepseek.com",
-});
+let _client: OpenAI | null = null;
+function getClient(): OpenAI {
+  if (!_client) _client = new OpenAI({ apiKey: process.env.DEEPSEEK_API_KEY!, baseURL: "https://api.deepseek.com" });
+  return _client;
+}
 
 const SYSTEM = `You are an expert Web3 quest campaign designer on the Injective blockchain.
 Your job is to take a creator's campaign brief and produce a complete, production-ready quest configuration.
@@ -55,7 +56,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "brief is required" }, { status: 400 });
     }
 
-    const res = await client.chat.completions.create({
+    const res = await getClient().chat.completions.create({
       model: "deepseek-chat",
       messages: [
         { role: "system", content: SYSTEM },

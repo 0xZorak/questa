@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
 
-const client = new OpenAI({
-  apiKey: process.env.DEEPSEEK_API_KEY!,
-  baseURL: "https://api.deepseek.com",
-});
+let _client: OpenAI | null = null;
+function getClient(): OpenAI {
+  if (!_client) _client = new OpenAI({ apiKey: process.env.DEEPSEEK_API_KEY!, baseURL: "https://api.deepseek.com" });
+  return _client;
+}
 
 // ── Campaign title + description generation ───────────────────────────────────
 async function generateCampaign(
@@ -30,7 +31,7 @@ Requirements:
 Respond with ONLY a JSON object, no markdown, no explanation:
 {"title":"...","description":"..."}`;
 
-  const res = await client.chat.completions.create({
+  const res = await getClient().chat.completions.create({
     model: "deepseek-chat",
     messages: [
       { role: "system", content: system },
@@ -62,7 +63,7 @@ Target audience: crypto/DeFi community on Injective Network
 
 Return ONLY the post content, no explanation.`;
 
-  const res = await client.chat.completions.create({
+  const res = await getClient().chat.completions.create({
     model: "deepseek-chat",
     messages: [
       { role: "system", content: system },

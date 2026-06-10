@@ -28,10 +28,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
 
-const client = new OpenAI({
-  apiKey: process.env.DEEPSEEK_API_KEY!,
-  baseURL: "https://api.deepseek.com",
-});
+let _client: OpenAI | null = null;
+function getClient(): OpenAI {
+  if (!_client) _client = new OpenAI({ apiKey: process.env.DEEPSEEK_API_KEY!, baseURL: "https://api.deepseek.com" });
+  return _client;
+}
 
 const SYSTEM = `You are an expert Web3 content quality analyst. You review social media submissions for campaign compliance, authenticity, and quality. You are fair but strict — generic, copy-paste, or off-topic content scores low.
 
@@ -69,7 +70,7 @@ export async function POST(req: NextRequest) {
       ? `Required hashtags: ${body.required_hashtags}`
       : "No specific hashtags required";
 
-    const res = await client.chat.completions.create({
+    const res = await getClient().chat.completions.create({
       model: "deepseek-chat",
       messages: [
         { role: "system", content: SYSTEM },
