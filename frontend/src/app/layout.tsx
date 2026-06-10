@@ -14,8 +14,31 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://questa-ten.vercel.app"),
   title: "Questa — Injective Testnet",
   description: "AI-powered quest campaigns with trustless INJ rewards on Injective",
+  applicationName: "Questa",
+  // Single logo file served from public/questa-logo.png drives the tab favicon,
+  // the link-share preview (Open Graph), and the X/Twitter card.
+  icons: {
+    icon: "/questa-logo.png",
+    shortcut: "/questa-logo.png",
+    apple: "/questa-logo.png",
+  },
+  openGraph: {
+    type: "website",
+    siteName: "Questa",
+    title: "Questa — AI-powered quests on Injective",
+    description: "AI-powered quest campaigns with trustless INJ rewards on Injective.",
+    url: "https://questa-ten.vercel.app",
+    images: [{ url: "/questa-logo.png", width: 1254, height: 1254, alt: "Questa" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Questa — AI-powered quests on Injective",
+    description: "AI-powered quest campaigns with trustless INJ rewards on Injective.",
+    images: ["/questa-logo.png"],
+  },
 };
 
 export default function RootLayout({
