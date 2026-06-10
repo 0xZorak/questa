@@ -121,7 +121,7 @@ async function main() {
 
   const { signBytes: storeSignBytes, txRaw: storeTxRaw } = createTransaction({
     message: storeMsg,
-    memo: "RewardBoost store",
+    memo: "Questa store",
     fee: STORE_FEE,
     pubKey: publicKey,
     sequence: parseInt(accountDetails.account.base_account.sequence, 10),
@@ -166,13 +166,13 @@ async function main() {
     sender: injectiveAddress,
     admin: injectiveAddress,
     codeId: Number(codeId),
-    label: "RewardBoost",
+    label: "Questa",
     msg: {},
   });
 
   const { signBytes: initSignBytes, txRaw: initTxRaw } = createTransaction({
     message: initMsg,
-    memo: "RewardBoost instantiate",
+    memo: "Questa instantiate",
     fee: INSTANTIATE_FEE,
     pubKey: publicKey,
     sequence: parseInt(accountDetails2.account.base_account.sequence, 10),

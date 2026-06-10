@@ -247,7 +247,7 @@ function fail(label: string, rawErr: unknown): void {
 // ── Main ──────────────────────────────────────────────────────────────────────
 
 async function main(): Promise<void> {
-  console.log("\n🌱  RewardBoost Demo Seed Script\n");
+  console.log("\n🌱  Questa Demo Seed Script\n");
   console.log(`    Supabase: ${SUPABASE_URL}`);
   console.log(`    Key type: ${process.env.SUPABASE_SERVICE_ROLE_KEY ? "service role ✓" : "anon key"}`);
   console.log();

@@ -165,7 +165,7 @@ async function main() {
     wasmBytes,
   });
 
-  const storeRes = await broadcast(privateKey, storeMsg, "RewardBoost store");
+  const storeRes = await broadcast(privateKey, storeMsg, "Questa store");
   const codeId =
     findEventAttr(storeRes, "cosmwasm.wasm.v1.EventCodeStored", "code_id") ??
     findEventAttr(storeRes, "store_code", "code_id");
@@ -182,11 +182,11 @@ async function main() {
     sender: injectiveAddress,
     admin: injectiveAddress,
     codeId: Number(codeId),
-    label: "RewardBoost",
+    label: "Questa",
     msg: {},
   });
 
-  const initRes = await broadcast(privateKey, initMsg, "RewardBoost instantiate");
+  const initRes = await broadcast(privateKey, initMsg, "Questa instantiate");
   const contractAddress =
     findEventAttr(initRes, "cosmwasm.wasm.v1.EventContractInstantiated", "contract_address") ??
     findEventAttr(initRes, "instantiate", "_contract_address");

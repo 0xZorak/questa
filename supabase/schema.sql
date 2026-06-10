@@ -1,5 +1,5 @@
 -- ============================================================
--- RewardBoost — Supabase schema
+-- Questa — Supabase schema
 -- Run this in Supabase → SQL Editor → New query → Run
 -- ============================================================
 

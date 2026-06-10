@@ -36,7 +36,7 @@ echo "Code ID: $CODE_ID"
 
 echo "Instantiating contract..."
 INIT_TX=$(injectived tx wasm instantiate "$CODE_ID" '{}' \
-  --label "RewardBoost" \
+  --label "Questa" \
   --from "$KEY" \
   --chain-id "$CHAIN_ID" \
   --node "$NODE" \

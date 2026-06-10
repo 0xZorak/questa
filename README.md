@@ -1,6 +1,6 @@
-# RewardBoost — AI-Powered Social Quest Platform on Injective
+# Questa — AI-Powered Social Quest Platform on Injective
 
-**RewardBoost** is a full-stack Web3 social campaign platform where brands create on-chain reward pools and participants earn INJ by completing social quests (post, follow, repost). Three autonomous AI agents handle submission verification, campaign strategy, and participant guidance — with every on-chain action logged, explainable, and reversible by the campaign creator.
+**Questa** is a full-stack Web3 social campaign platform where brands create on-chain reward pools and participants earn INJ by completing social quests (post, follow, repost). Three autonomous AI agents handle submission verification, campaign strategy, and participant guidance — with every on-chain action logged, explainable, and reversible by the campaign creator.
 
 ---
 
@@ -147,8 +147,8 @@ NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=...
 
 ```bash
 # 1. Clone and install
-git clone https://github.com/yourname/rewardboost
-cd rewardboost/frontend
+git clone https://github.com/0xZorak/questa
+cd questa/frontend
 npm install
 
 # 2. Configure environment
@@ -263,7 +263,7 @@ npm run seed:demo
 ## Project Structure
 
 ```
-rewardboost/
+questa/
 ├── contracts/reward_campaign/     # CosmWasm smart contract (Rust)
 │   └── src/
 │       ├── contract.rs            # execute / query entry points
